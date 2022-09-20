@@ -1,9 +1,16 @@
 import '@fontsource/poppins';
 import '../styles/globals.scss';
+import type { ServerRouter } from '@/server/router';
+import { withTRPC } from '@trpc/next';
 import type { AppProps } from 'next/app';
 
-function MyApp({ Component, pageProps }: AppProps) {
+const App = ({ Component, pageProps }: AppProps) => {
   return <Component {...pageProps} />;
-}
+};
 
-export default MyApp;
+export default withTRPC<ServerRouter>({
+  config({ ctx: _ }) {
+    return { url: `${process.env.HOST}/api/trpc` };
+  },
+  ssr: true
+})(App);
