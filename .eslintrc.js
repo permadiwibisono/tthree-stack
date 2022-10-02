@@ -1,30 +1,4 @@
 module.exports = {
-  root: true,
-  parserOptions: {
-    ecmaVersion: 2020,
-    sourceType: 'module',
-    ecmaFeatures: {
-      jsx: true
-    }
-  },
-
-  env: {
-    browser: true,
-    node: true,
-    es6: true
-  },
-
-  settings: {
-    react: {
-      version: 'detect'
-    },
-    'import/resolver': {
-      node: {
-        extensions: ['.ts', '.tsx']
-      }
-    }
-  },
-
   plugins: ['@typescript-eslint'],
   extends: [
     'next/core-web-vitals',
@@ -37,6 +11,9 @@ module.exports = {
 
   rules: {
     'no-unused-vars': 'off',
+    'arrow-body-style': 'off',
+    'no-nested-ternary': 'off',
+
     '@typescript-eslint/no-unused-vars': [
       'error',
       {
@@ -46,9 +23,9 @@ module.exports = {
       }
     ],
     '@typescript-eslint/no-explicit-any': 'error',
+
     'react/react-in-jsx-scope': 'off',
     'react/function-component-definition': 'off',
-    'arrow-body-style': 'off',
     'react/jsx-filename-extension': [
       1,
       {
@@ -56,6 +33,17 @@ module.exports = {
       }
     ],
     'react/jsx-props-no-spreading': 'off',
+    'react/require-default-props': 'off',
+
+    'jsx-a11y/anchor-is-valid': [
+      'error',
+      {
+        components: ['Link'],
+        specialLink: ['hrefLeft', 'hrefRight'],
+        aspects: ['invalidHref', 'preferButton']
+      }
+    ],
+
     'import/extensions': [
       'error',
       'ignorePackages',
@@ -66,16 +54,12 @@ module.exports = {
         tsx: 'never'
       }
     ],
-    'jsx-a11y/anchor-is-valid': [
-      'error',
-      {
-        components: ['Link'],
-        specialLink: ['hrefLeft', 'hrefRight'],
-        aspects: ['invalidHref', 'preferButton']
-      }
-    ],
-    'no-nested-ternary': 'off',
     'import/prefer-default-export': 'off',
-    'react/require-default-props': 'off'
+    'import/order': [
+      'warn',
+      {
+        groups: ['builtin', ['external', 'internal'], 'parent', ['sibling', 'index']]
+      }
+    ]
   }
 };
