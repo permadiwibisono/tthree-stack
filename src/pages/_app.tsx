@@ -10,7 +10,9 @@ const App = ({ Component, pageProps }: AppProps) => {
 
 export default withTRPC<ServerRouter>({
   config({ ctx: _ }) {
-    return { url: `${process.env.NEXT_PUBLIC_HOST}/api/trpc` };
+    return {
+      url: `${process.env.NEXT_PUBLIC_HOST}/api/trpc`
+    };
   },
   ssr: true
 })(App);
